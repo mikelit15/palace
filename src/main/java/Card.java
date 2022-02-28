@@ -1,29 +1,27 @@
-import java.util.HashSet;
+import java.util.*;
 
 public class Card 
 {
-	public String name;
 	public int rank;
 	public String suit;
 	public static HashSet<Card> deck = new HashSet<Card>();
 
 	public static void main(String args[])
 	{
+		Card h;
 		setDeck();
-		System.out.println("Hello");
-		System.out.print(getDeck());
+		Iterator<Card> cards = deck.iterator();
+		while(cards.hasNext())
+		{
+			h = cards.next();
+			System.out.println(h.getRank() + " " + h.getSuit());
+		}
 	}
 	
-	public Card(String name, int rank, String suit)
+	public Card(int rank, String suit)
 	{
-		this.name = name;
 		this.rank = rank;
 		this.suit = suit;
-	}
-	
-	public String getName()
-	{
-		return name;
 	}
 	
 	public int getRank()
@@ -38,84 +36,52 @@ public class Card
 	
 	public static void setDeck()
 	{
-		int w;
-		int x;
-		int y;
-		for(w = 1; w < 53; w++)
+		int x = 2;
+		int y = 1;
+
+		while (x < 14)
 		{
-			for(x = 1; x < 15; x++)
+			y = 1;
+			while (y < 5)
 			{
-				for(y = 1; y < 5; y++)
+				if(y == 1)
 				{
-					if (x < 11)
-					{
-						switch(y)
-						{
-							case 1:
-							{
-								deck.add(new Card(Integer.toString(y), x, "Club"));
-							}
-							case 2:
-							{
-								deck.add(new Card(Integer.toString(y), x, "Spade"));
-							}
-							case 3:
-							{
-								deck.add(new Card(Integer.toString(y), x, "Heart"));
-							}
-							case 4:
-							{
-								deck.add(new Card(Integer.toString(y), x, "Diamond"));
-							}
-						}
-					}
-					else
-					{
-						String i = "";
-						if (x == 11)
-						{
-							i = "Jack";
-						}
-						else if (x == 12)
-						{
-							i = "Queen";
-						}
-						else if (x == 13)
-						{
-							i = "King";
-						}
-						else if (x == 14)
-						{
-							i = "Ace";
-						}
-						switch(y)
-						{
-							case 1:
-							{
-								deck.add(new Card(i, x, "Club"));
-							}
-							case 2:
-							{
-								deck.add(new Card(i, x, "Spade"));
-							}
-							case 3:
-							{
-								deck.add(new Card(i, x, "Heart"));
-							}
-							case 4:
-							{
-								deck.add(new Card(i, x, "Diamond"));
-							}
-						}
-					}
+					deck.add(new Card(x, "Club"));
 				}
+				else if (y == 2)
+				{
+					deck.add(new Card(x, "Spade"));
+				}
+				else if (y == 3)
+				{
+					deck.add(new Card(x, "Heart"));
+				}
+				else if (y == 4)
+				{
+					deck.add(new Card(x, "Diamond"));
+				}
+			y++;
 			}
+		x++;
 		}
 	}
-	
+
 	public static HashSet<Card> getDeck()
 	{
 		return deck;
 	}
 	
+	public static HashSet<Card> shuffleDeck()
+	{
+		int x = 0;
+		while(x < 53)
+		{
+			HashSet<Card> shuffled = new HashSet<Card>();
+			for(int y = 0; y < deck.size(); y++)
+			{
+				
+			}
+		}
+		return deck;
+	}
 }
