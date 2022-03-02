@@ -1,22 +1,21 @@
 import java.util.*;
 
+/**
+ * Holds the information for any given card in the model
+ * @author Mike
+ */
+
 public class Card 
 {
 	public int rank;
 	public String suit;
-	public static HashSet<Card> deck = new HashSet<Card>();
-
-	public static void main(String args[])
-	{
-		Card h;
-		setDeck();
-		Iterator<Card> cards = deck.iterator();
-		while(cards.hasNext())
-		{
-			h = cards.next();
-			System.out.println(h.getRank() + " " + h.getSuit());
-		}
-	}
+	
+	/**
+	 * Object representing the data behind each card
+	 * @param rank - the rank or number of the card
+	 * @param suit - the suit of the card
+	 * @author Mike
+	 */
 	
 	public Card(int rank, String suit)
 	{
@@ -24,64 +23,37 @@ public class Card
 		this.suit = suit;
 	}
 	
+	/**
+	 * Function to get the rank of a card
+	 * @return integer representing the rank of the card
+	 * @author Mike
+	 */
+	
 	public int getRank()
 	{
 		return rank;
 	}
+	
+	/**
+	 * Function to get the suit of a card
+	 * @return string representing the suit of the card
+	 * @author Mike
+	 */
 	
 	public String getSuit()
 	{
 		return suit;
 	}
 	
-	public static void setDeck()
-	{
-		int x = 2;
-		int y = 1;
-
-		while (x < 14)
-		{
-			y = 1;
-			while (y < 5)
-			{
-				if(y == 1)
-				{
-					deck.add(new Card(x, "Club"));
-				}
-				else if (y == 2)
-				{
-					deck.add(new Card(x, "Spade"));
-				}
-				else if (y == 3)
-				{
-					deck.add(new Card(x, "Heart"));
-				}
-				else if (y == 4)
-				{
-					deck.add(new Card(x, "Diamond"));
-				}
-			y++;
-			}
-		x++;
-		}
-	}
-
-	public static HashSet<Card> getDeck()
-	{
-		return deck;
-	}
+	/**
+	 * To string method to convert card into a string representing the rank and suit
+	 * @param card - takes in a card to print out the rank and suit on one line
+	 * @return string - representing the rank and suit of the card
+	 * @author Mike
+	 */
 	
-	public static HashSet<Card> shuffleDeck()
+	public String toString(Card card)
 	{
-		int x = 0;
-		while(x < 53)
-		{
-			HashSet<Card> shuffled = new HashSet<Card>();
-			for(int y = 0; y < deck.size(); y++)
-			{
-				
-			}
-		}
-		return deck;
+		return card.getRank() + " " + card.getSuit();
 	}
 }
