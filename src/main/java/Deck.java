@@ -1,27 +1,32 @@
 import java.util.*;
+import java.util.function.ToLongFunction;
 import java.math.*;
 public class Deck
 {
 	Card card;
+	Controller controller;
 	public HashSet<Card> deck = new HashSet<Card>();
-	
-	public static void main(String args[])
-	{
+	public HashSet<Card> stack = new HashSet<Card>();
+	public HashSet<Card> bomb = new HashSet<Card>();
 
-	}
 	
+	public Deck(Controller controller)
+	{
+		this.controller = controller;
+	}
+
 	/**
 	 * Creates a new deck of 52 cards
 	 * 
 	 * @author Mike
 	 * @return 
 	 */
-	public
-	HashSet<Card> setDeck()
+	public void setDeck()
 	{
+		deck = new HashSet<Card>();
 		int x = 2;
 		int y = 1;
-
+		int z = 1;
 		while (x < 15)
 		{
 			y = 1;
@@ -29,70 +34,68 @@ public class Deck
 			{
 				if(y == 1)
 				{
-					deck.add(new Card(x, "Club"));
+					deck.add(new Card(x, "Club", z));
 				}
 				else if (y == 2)
 				{
-					deck.add(new Card(x, "Spade"));
+					deck.add(new Card(x, "Spade", z));
 				}
 				else if (y == 3)
 				{
-					deck.add(new Card(x, "Heart"));
+					deck.add(new Card(x, "Heart", z));
 				}
 				else if (y == 4)
 				{
-					deck.add(new Card(x, "Diamond"));
+					deck.add(new Card(x, "Diamond", z));
 				}
-			y++;
+				z++;
+				y++;
 			}
 		x++;
 		}
-		return deck;
 	}
 	
 	public HashSet<Card> getDeck()
 	{
-		return deck;
+		return this.deck;
 	}
 	
+	public HashSet<Card> getStack()
+	{
+		return stack;
+	}
+
+	public Card getTopOfStack()
+	{
+		Iterator<Card> top = stack.iterator();
+		Card a = new Card(0, "0", 0);
+		while(top.hasNext())
+		{
+			a = top.next();
+		}
+		return a;
+	}
+
 	public void setBombPile()
 	{
 		
 	}
 	
-	public HashSet<Card> shuffleDeck()
+	public void shuffleDeck()
 	{
-		int x = 0;
-		while(x < 53)
-		{
-			HashSet<Card> shuffled = new HashSet<Card>();
-			for(int y = 0; y < deck.size(); y++)
-			{
-				
-			}
-		}
-		return deck;
-	}
-	
-	public Card draw(HashSet<Card> decks)
-	{
-		int x = 0;
-		Card y = new Card(0, "0");
 		Random random = new Random();
-		int rand = random.nextInt(decks.size());
-		Iterator<Card> randCard = decks.iterator();
+		HashSet<Card> newDeck = new HashSet<Card>();
+		int rand = random.nextInt(deck.size());
+		Iterator<Card> randCard = deck.iterator();
 		while(randCard.hasNext())
 		{
-			if(x == rand)
+			if(randCard.next().getID() == rand)
 			{
-				y = randCard.next();
-				x = 0;
-				decks.remove(y);
-				break;
+				newDeck.add(randCard.next());
+				randCard.remove();
 			}
-			y = randCard.next();
-			x++;
 		}
-		return y;
+
+
 	}
 }

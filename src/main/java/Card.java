@@ -9,6 +9,8 @@ public class Card
 {
 	public int rank;
 	public String suit;
+	public int ID;
+	public String img;
 	
 	/**
 	 * Object representing the data behind each card
@@ -17,10 +19,11 @@ public class Card
 	 * @author Mike
 	 */
 	
-	public Card(int rank, String suit)
+	public Card(int rank, String suit, int ID)
 	{
 		this.rank = rank;
 		this.suit = suit;
+		this.ID = ID;
 	}
 	
 	/**
@@ -45,6 +48,11 @@ public class Card
 		return suit;
 	}
 	
+	public int getID()
+	{
+		return ID;
+	}
+
 	/**
 	 * To string method to convert card into a string representing the rank and suit
 	 * @param card - takes in a card to print out the rank and suit on one line
@@ -55,5 +63,23 @@ public class Card
 	public String toString(Card card)
 	{
 		return card.getRank() + " " + card.getSuit();
+	}
+
+	public boolean inDeck(HashSet<Card> deck, int checkID)
+	{
+		boolean x = false;
+		Iterator<Card> card = deck.iterator();
+		while(card.hasNext())
+		{
+			if(card.next().getID() == checkID)
+			{
+				x = true;
+			}
+			else
+			{
+				x = false;
+			}
+		}
+		return x;
 	}
 }
